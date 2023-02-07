@@ -13,23 +13,28 @@ plt.rcParams.update({
     "legend.handlelength": 1.0
 })
 
-groups = ["Austin", "CSIRO", "Delft-DARSim", "Delft-DARTS", "Heriot-Watt", "LANL", "Melbourne", "Stanford", "Stuttgart"]
-colors = ["C0", "C1", "C2", "C3", "C4", "C6", "C7", "C8", "C9"]
+#groups = ["Austin", "CSIRO", "Delft-DARSim", "Delft-DARTS", "Heriot-Watt", "LANL", "Melbourne", "Stanford", "Stuttgart", "MIT"]
+#colors = ["C0", "C1", "C2", "C3", "C4", "C6", "C7", "C8", "C9", "C10"]
+groups = ["Austin", "CSIRO", "Stuttgart", "MIT"]
+colors = ["C0", "C1", "C8", "C9"]
+includeLANL = False
 
 numGroups = len(groups)
 numExps = 5
 numGroupsPlusExps = numGroups + numExps
 
-distances = np.loadtxt("segmented_distances.csv", delimiter=",")
+distances = np.loadtxt("segmented_distances_mit.csv", delimiter=",")
 
 fig, axs = plt.subplots(2, 3, figsize=(9, 6))
 
 # The calculated distances have the unit of normalized mass times meter.
 # Multiply by 8.5, the injected mass of CO2 in g, and 100, to convert to g.cm.
 A = 850*distances[:numGroupsPlusExps, :numGroupsPlusExps]
+
 # set LANL distances to zero
-A[5, :] = 0
-A[:, 5] = 0
+if includeLANL:
+    A[5, :] = 0
+    A[:, 5] = 0
 
 meanA_exp = np.mean(A[numGroups:, :], axis=0) 
 meanA_fore = np.mean(A[:numGroups, :], axis=0)*9/8  # take correct avg due to missing LANL data
@@ -51,8 +56,9 @@ axs[0][0].set_ylim((60, 270))
 for k, hour, ki, kj in zip(range(1, 5), [48, 72, 96, 120], [0, 0, 1, 1], [1, 2, 0, 1]):
     A = 850*distances[k*numGroupsPlusExps:(k+1)*numGroupsPlusExps, k*numGroupsPlusExps:(k+1)*numGroupsPlusExps]
     # set LANL distances to zero
-    A[5, :] = 0
-    A[:, 5] = 0
+    if includeLANL:
+        A[5, :] = 0
+        A[:, 5] = 0
 
     meanA_exp = np.mean(A[numGroups:, :], axis=0) 
     if hour > 48:

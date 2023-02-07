@@ -54,20 +54,16 @@ cmdArgs = vars(parser.parse_args())
 
 baseFileNames = ['../../austin/spatial_maps/spatial_map_',
                  '../../csiro/spatial_map_',
-                 '../../delft/delft-DARSim/spatial_map_',
-                 '../../delft/delft-DARTS/spatial_map_',
-                 '../../heriot-watt/spatial_map_',
-                 '../../lanl/spatial_map_',
-                 '../../melbourne/spatial_map_',
-                 '../../stanford/spatial_maps/spatial_map_',
-                 '../../stuttgart/spatial_map_']
+                 '../../stuttgart/spatial_map_',
+                 '../../mit/spatial_map_']
 
+timesteps = [24]
 numGroups = len(baseFileNames)
 numExps = 5
 numGroupsPlusExps = numGroups + numExps
-distances = np.zeros(((numGroups + numExps)*5, (numGroups + numExps)*5))
+distances = np.zeros(((numGroups + numExps)*len(timesteps), (numGroups + numExps)*len(timesteps)))
 
-for hourI in [24, 48, 72, 96, 120]:
+for hourI in timesteps:
     for hourJ in [hourI]: #[24, 48, 72, 96, 120]:
         if hourJ < hourI: continue
 
@@ -148,4 +144,4 @@ for hourI in [24, 48, 72, 96, 120]:
 
 distances = distances + distances.T - np.diag(distances.diagonal())
 
-np.savetxt("segmented_distances.csv", distances, delimiter=",")
+np.savetxt("segmented_distances_mit.csv", distances, delimiter=",")

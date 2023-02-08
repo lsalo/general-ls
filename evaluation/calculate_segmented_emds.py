@@ -54,10 +54,19 @@ cmdArgs = vars(parser.parse_args())
 
 baseFileNames = ['../../austin/spatial_maps/spatial_map_',
                  '../../csiro/spatial_map_',
+                 '../../delft/delft-DARSim/spatial_map_',
+                 '../../delft/delft-DARTS/spatial_map_',
+                 '../../heriot-watt/spatial_map_',
+                 '../../lanl/spatial_map_',
+                 '../../melbourne/spatial_map_',
+                 '../../stanford/spatial_maps/spatial_map_',
                  '../../stuttgart/spatial_map_',
-                 '../../mit/spatial_map_']
+                 '../../mit/results/m1/spatial_map_',
+                 '../../mit/results/m2/spatial_map_',
+                 '../../mit/results/m3_D1/spatial_map_',
+                 '../../mit/results/m3_D3/spatial_map_']
 
-timesteps = [24]
+timesteps = [24, 48, 72, 96, 120]
 numGroups = len(baseFileNames)
 numExps = 5
 numGroupsPlusExps = numGroups + numExps
@@ -144,4 +153,4 @@ for hourI in timesteps:
 
 distances = distances + distances.T - np.diag(distances.diagonal())
 
-np.savetxt("segmented_distances_mit.csv", distances, delimiter=",")
+np.savetxt("segmented_distances_mit_c0.2.csv", distances, delimiter=",")

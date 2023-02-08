@@ -37,7 +37,7 @@ def compareSparseData():
                  "../../csiro/sparse_data.csv",
                  "../../delft/delft-DARSim/sparse_data.csv",
                  "../../delft/delft-DARTS/sparse_data.csv",
-                 "../../herriot-watt/HWU-sparsedata-final.csv",
+                 "../../heriot-watt/HWU-sparsedata-final.csv",
                  "../../lanl/sparse_data.csv",
                  "../../melbourne/sparse_data.csv",
                  "../../stanford/sparse_data.csv",

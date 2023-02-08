@@ -35,7 +35,8 @@ fig, axs = plt.subplots(2, 3, figsize=(9, 6))
 # The calculated distances have the unit of normalized mass times meter.
 # Multiply by 8.5, the injected mass of CO2 in g, and 100, to convert to g.cm.
 A = 850*distances[:numGroupsPlusExps, :numGroupsPlusExps]
-A[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit] = 200*distances[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit]
+# Use 8.13g for mit vs mit simulations, which is what we actually injected
+A[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit] = 813*distances[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit]
 
 # set LANL distances to zero
 if includeLANL:

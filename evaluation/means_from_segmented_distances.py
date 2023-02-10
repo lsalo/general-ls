@@ -36,7 +36,7 @@ fig, axs = plt.subplots(2, 3, figsize=(9, 6))
 # Multiply by 8.5, the injected mass of CO2 in g, and 100, to convert to g.cm.
 A = 850*distances[:numGroupsPlusExps, :numGroupsPlusExps]
 # Use 8.13g for mit vs mit simulations, which is what we actually injected
-A[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit] = 813*distances[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit]
+# A[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit] = 813*distances[nBaseGroups:nBaseGroups+nmit, nBaseGroups:nBaseGroups+nmit]
 
 # set LANL distances to zero
 if includeLANL:
@@ -44,7 +44,8 @@ if includeLANL:
     A[:, 5] = 0
 
 meanA_exp = np.mean(A[numGroups:, :], axis=0) 
-meanA_fore = np.mean(A[:numGroups, :], axis=0)*numGroups/(numGroups-1)  # take correct avg due to missing LANL data
+#meanA_fore = np.mean(A[:numGroups, :], axis=0)*numGroups/(numGroups-1)  # take correct avg due to missing LANL data
+meanA_fore = np.mean(A[:nBaseGroups, :], axis=0)*nBaseGroups/(nBaseGroups-1) # exclude MIT cluster
 
 for i in range(numGroups):
     if i == 5:
@@ -79,9 +80,9 @@ for k, hour, ki, kj in zip(range(1, 5), [48, 72, 96, 120], [0, 0, 1, 1], [1, 2, 
 
     meanA_exp = np.mean(A[numGroups:, :], axis=0) 
     if hour > 48:
-        meanA_fore = np.mean(A[:numGroups, :], axis=0)*numGroups/(numGroups-2) # take correct avg due to missing LANL and HW data
+        meanA_fore = np.mean(A[:nBaseGroups, :], axis=0)*nBaseGroups/(nBaseGroups-2) # take correct avg due to missing LANL and HW data
     else:
-        meanA_fore = np.mean(A[:numGroups, :], axis=0)*numGroups/(numGroups-1) # take correct avg due to missing LANL data
+        meanA_fore = np.mean(A[:nBaseGroups, :], axis=0)*nBaseGroups/(nBaseGroups-1) # take correct avg due to missing LANL data
 
     for i in range(numGroups):
         if i == 5 or (i == 4 and hour > 48):
@@ -122,12 +123,12 @@ axs[1][0].set_ylabel(r'\textrm{dist. to forecasts [gr.cm]}')
 
 fig.legend(loc='lower right', bbox_to_anchor=(1.0, 0.05), ncol=2)
 
-fig.savefig(f"means_segmented_snapshots_mit813.pdf", bbox_inches='tight')
+fig.savefig(f"means_segmented_snapshots_noMITfore.pdf", bbox_inches='tight')
 
 for k, hour, ki, kj in zip(range(0, 5), [24, 48, 72, 96, 120], [0, 0, 0, 1, 1], [0, 1, 2, 0, 1]):
     axs[ki][kj].set_xlim((0, 120))
     axs[ki][kj].set_xticks([0, 20, 40, 60, 80, 100, 120])
-    axs[ki][kj].set_ylim((60, 180))
+    axs[ki][kj].set_ylim((70, 180))
     axs[ki][kj].grid(color=(0.9, 0.9, 0.9), linestyle='-', linewidth=0.5, zorder=0)
 
-fig.savefig(f"means_segmented_snapshots_zoom_mit813.pdf", bbox_inches='tight')
+fig.savefig(f"means_segmented_snapshots_zoom_noMITfore.pdf", bbox_inches='tight')

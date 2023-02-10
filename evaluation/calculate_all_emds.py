@@ -3,21 +3,34 @@ import os.path
 import emd
 
 
-baseFileNames = ['../../austin/figures/austin_lasergrid_',
-                 '../../csiro/figures/csiro_lasergrid_',
-                 '../../delft/delft-DARSim/figures/darsim_lasergrid_',
-                 '../../delft/delft-DARTS/figures/darts_lasergrid_',
-                 '../../heriot-watt/figures/heriot_watt_lasergrid_',
-                 '../../lanl/figures/lanl_lasergrid_',
-                 '../../melbourne/figures/melbourne_lasergrid_',
-                 '../../stanford/figures/stanford_lasergrid_',
-                 '../../stuttgart/figures/stuttgart_lasergrid_']
+# baseFileNames = ['../../austin/figures/austin_lasergrid_',
+#                  '../../csiro/figures/csiro_lasergrid_',
+#                  '../../delft/delft-DARSim/figures/darsim_lasergrid_',
+#                  '../../delft/delft-DARTS/figures/darts_lasergrid_',
+#                  '../../heriot-watt/figures/heriot_watt_lasergrid_',
+#                  '../../lanl/figures/lanl_lasergrid_',
+#                  '../../melbourne/figures/melbourne_lasergrid_',
+#                  '../../stanford/figures/stanford_lasergrid_',
+#                  '../../stuttgart/figures/stuttgart_lasergrid_',
+#                  '../../mit/results/m1/mit_lasergrid_',
+#                  '../../mit/results/m2/mit_lasergrid_',
+#                  '../../mit/results/m3_D1/mit_lasergrid_',
+#                  '../../mit/results/m3_D3/mit_lasergrid_']
+baseFileNames = ['../../austin/spatial_maps/spatial_map_grayscale_',
+                 '../../csiro/spatial_map_grayscale_',
+                 '../../delft/delft-DARSim/spatial_map_grayscale_',
+                 '../../delft/delft-DARTS/spatial_map_grayscale_',
+                 '../../heriot-watt/figures/heriot_watt_gray_',
+                 '../../lanl/figures/lanl_gray_',
+                 '../../melbourne/figures/melbourne_gray_',
+                 '../../stanford/figures/stanford_gray_',
+                 '../../stuttgart/figures/stuttgart_gray_']
 
 numGroups = len(baseFileNames)
 distances = np.zeros((numGroups*5, numGroups*5))
 
 for hourI in [24, 48, 72, 96, 120]:
-    for hourJ in [24, 48, 72, 96, 120]:
+    for hourJ in [24]:
         if hourJ < hourI: continue
 
         for i, baseFileNameI in zip(range(numGroups), baseFileNames):
@@ -38,4 +51,4 @@ for hourI in [24, 48, 72, 96, 120]:
 
 distances = distances + distances.T - np.diag(distances.diagonal())
 
-np.savetxt("distances.csv", distances, delimiter=",")
+np.savetxt("distances_mit.csv", distances, delimiter=",")

@@ -153,4 +153,4 @@ for hourI in timesteps:
 
 distances = distances + distances.T - np.diag(distances.diagonal())
 
-np.savetxt("segmented_distances_mit_c0.2.csv", distances, delimiter=",")
+np.savetxt("segmented_distances_mit.csv", distances, delimiter=",")

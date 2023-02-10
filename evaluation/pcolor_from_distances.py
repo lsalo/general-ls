@@ -16,7 +16,7 @@ colors = ["C0", "C1", "C2", "C3", "C4", "C6", "C7", "C8", "C9"]
 
 numGroups = len(groups)
 
-distances = np.loadtxt("distances.csv", delimiter=",")
+distances = np.loadtxt("distances_mit.csv", delimiter=",")
 
 cmap = matplotlib.colors.LinearSegmentedColormap.from_list("", ["white","red"])
 
@@ -77,4 +77,4 @@ for (i,j), value in np.ndenumerate(A):
             axs[1].text(numGroups-1-i-0.5, numGroups-1-j-0.6, '-', ha='center', va='center')
 axs[1].set_title(r"\textrm{\textbf{120 hours}}")
 
-fig.savefig(f"pcolor_distances.pdf", bbox_inches='tight')
+fig.savefig(f"pcolor_distances_mit.pdf", bbox_inches='tight')

@@ -61,8 +61,11 @@ def plotColorMesh(fig, x, y, z, outFileName):
     print(f'File {outFileName} has been generated.')
 
 
-def generateGrayScale():
-    """Generate a grayscale a spatial map for the FluidFlower benchmark"""
+def generateGrayScale(input_name=None, output_name=None): 
+    """Generate a grayscale a spatial map for the FluidFlower benchmark
+    
+       03/06/2023 modified by LS to include input and output if desired
+    """
 
     parser = argparse.ArgumentParser(
         description="This script visualizes the gas saturation and CO2 concentration "
@@ -86,12 +89,16 @@ def generateGrayScale():
     # only when saving the figure to disk.
     my_dpi = 96
     fig = plt.figure(figsize=((280+82)/my_dpi, (120+37)/my_dpi), dpi=my_dpi)
-
+    
     inFileName = cmdArgs["infilename"]
+    if input_name is not None:
+        inFileName = input_name
 
     saturation, concentration = getFieldValues(inFileName, nX, nY)
-
+    
     outFileName = cmdArgs["outfilename"]
+    if output_name is not None:
+        outFileName = output_name
     # The formula approximates the mass of CO2 in a cell by adding
     # the contributions from the gaseous and the liquid phase.
     # The factor '2.0' is the approximate density of CO2.

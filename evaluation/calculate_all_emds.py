@@ -1,7 +1,9 @@
+"""
+Generate images with script generate_grayscale.py
+"""
 import numpy as np
 import os.path
 import emd
-
 
 baseFileNames = ['../../austin/figures/austin_lasergrid_',
                   '../../csiro/figures/csiro_lasergrid_',

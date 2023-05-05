@@ -14,10 +14,10 @@ baseFileNames = ['../../austin/figures/austin_lasergrid_',
                   '../../melbourne/Figures/melbourne_lasergrid_',
                   '../../stanford/figures/stanford_lasergrid_',
                   '../../stuttgart/figures/stuttgart_lasergrid_',
-                  '../../mit/results/m1/mit_lasergrid_',
-                  '../../mit/results/m2/mit_lasergrid_',
-                  '../../mit/results/m3_D1/mit_lasergrid_',
-                  '../../mit/results/m3_D3/mit_lasergrid_']
+                  '../../mit/results/revised/m1/mit_lasergrid_',
+                  '../../mit/results/revised/m2/mit_lasergrid_',
+                  '../../mit/results/revised/m3_D1/mit_lasergrid_',
+                  '../../mit/results/revised/m3_D3/mit_lasergrid_']
 # baseFileNames = ['../../austin/spatial_maps/spatial_map_grayscale_',
 #                  '../../csiro/spatial_map_grayscale_',
 #                  '../../delft/delft-DARSim/spatial_map_grayscale_',
@@ -53,4 +53,4 @@ for hourI in [24, 48, 72, 96, 120]:
 
 distances = distances + distances.T - np.diag(distances.diagonal())
 
-np.savetxt("distances_mit.csv", distances, delimiter=",")
+np.savetxt("distances_mit_revised.csv", distances, delimiter=",")

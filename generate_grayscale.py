@@ -7,10 +7,10 @@ import generate_grayscale_lasergrid as lsg
 import os
 import argparse
 
-baseFileNames = ['mit/results/m1/',
-                 'mit/results/m2/',
-                 'mit/results/m3_D1/',
-                 'mit/results/m3_D3/']
+baseFileNames = ['mit/results/revised/m1/',
+                 'mit/results/revised/m2/',
+                 'mit/results/revised/m3_D1/',
+                 'mit/results/revised/m3_D3/']
 reportTimes = [24, 48, 72, 96, 120]
 
 for fileName in baseFileNames:

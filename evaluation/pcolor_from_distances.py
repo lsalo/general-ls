@@ -12,13 +12,13 @@ plt.rcParams.update({
 })
 
 groups = ["Austin", "CSIRO", "Delft-DARSim", "Delft-DARTS", "Heriot-Watt", 
-          "LANL", "Melbourne", "Stanford", "Stuttgart", "m1", "m2", "m3_1", "m3_3"]
+          "LANL", "Melbourne", "Stanford", "Stuttgart", "M_1", "M_2", "M_{3_1}", "M_{3_3}"]
 colors = ["C0", "C1", "C2", "C3", "C4", "C6", "C7", "C8", "C9", "C5", "C5", "C5", "C5"]
 
 numGroups = len(groups)
 nBaseGroups = 9
 
-distances = np.loadtxt("distances_mit.csv", delimiter=",")
+distances = np.loadtxt("distances_mit_revised.csv", delimiter=",")
 
 cmap = matplotlib.colors.LinearSegmentedColormap.from_list("", ["white","red"])
 
@@ -81,4 +81,4 @@ for (i,j), value in np.ndenumerate(A):
             axs[1].text(numGroups-1-i-0.5, numGroups-1-j-0.6, '-', ha='center', va='center')
 axs[1].set_title(r"\textrm{\textbf{120 hours}}")
 
-fig.savefig(f"pcolor_distances_mit.pdf", bbox_inches='tight')
+fig.savefig(f"pcolor_distances_mit_revised.pdf", bbox_inches='tight')

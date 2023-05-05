@@ -3,7 +3,7 @@ import subprocess
 import numpy as np
 import generate_segmented_images as seg
 
-time_h = "120"
+time_h = "24"
 fileNames = ["../../austin/spatial_maps/spatial_map_",
              "../../csiro/spatial_map_",
              "../../delft/delft-DARSim/spatial_map_",
@@ -13,12 +13,12 @@ fileNames = ["../../austin/spatial_maps/spatial_map_",
              "../../melbourne/spatial_map_",
              "../../stanford/spatial_maps/spatial_map_",
              "../../stuttgart/spatial_map_",
-             "../../mit/results/m1/spatial_map_",
-             "../../mit/results/m2/spatial_map_",
-             "../../mit/results/m3_D1/spatial_map_",
-             "../../mit/results/m3_D3/spatial_map_"]
+             "../../mit/results/revised/m1/spatial_map_",
+             "../../mit/results/revised/m2/spatial_map_",
+             "../../mit/results/revised/m3_D1/spatial_map_",
+             "../../mit/results/revised/m3_D3/spatial_map_"]
 groups = ["austin", "csiro", "darsim", "darts", "heriot_watt", "lanl", 
-          "melbourne", "stanford", "stuttgart", "m1", "m2", "m3,1", "m3,3"]
+          "melbourne", "stanford", "stuttgart", "M1", "M2", "M3,1", "M3,3"]
 nBaseGroups = 9
 numGroups = len(groups)
 
@@ -36,7 +36,7 @@ for fileName, group in zip(fileNames, groups):
             modelResult = seg.generateSegmentMap(f"{fileName}{time_h}h.csv", 0.03, 2.83, 0.03, 1.23, 1e-2, 1e-1)
         else:
             modelResult = np.zeros((120, 280))
-    if group == "m1" or group == "m2" or group == "m3,1" or group == "m3,3":
+    if group == "M1" or group == "M2" or group == "M3,1" or group == "M3,3":
         seg.generateImages(modelResult, experimentalData, f"z{group}_run2_{time_h}h", onlyModCont=True)
     else:
         seg.generateImages(modelResult, experimentalData, f"{group}_run2_{time_h}h", onlyModCont=True)
@@ -48,12 +48,12 @@ subprocess.run(["convert", "temp.png", "-font", "helvetica-bold", "-fill", "yell
                 "+1150+45", "Delft-DARSim", "-annotate", "+10+295", "Delft-DARTS", "-annotate", "+580+295",
                 "Heriot-Watt", "-annotate", "+1150+295", "LANL", "-annotate", "+10+545", "Melbourne",
                 "-annotate", "+580+545", "Stanford", "-annotate", "+1150+545", "Stuttgart", 
-                "-annotate", "+10+795", "m1", "-annotate", "+580+795", "m2",
-                "-annotate", "+1150+795", "m3,1", "-annotate", "+10+1045", "m3,3",
-                f"compare_segmentation_{time_h}h_mit.png"])
+                "-annotate", "+10+795", "M1", "-annotate", "+580+795", "M2",
+                "-annotate", "+1150+795", "M3,1", "-annotate", "+10+1045", "M3,3",
+                f"compare_segmentation_{time_h}h_mit_revised.png"])
 subprocess.run(["rm", f"austin_run2_{time_h}h_mod_cont.png", f"csiro_run2_{time_h}h_mod_cont.png", f"darsim_run2_{time_h}h_mod_cont.png",
                 f"darts_run2_{time_h}h_mod_cont.png", f"heriot_watt_run2_{time_h}h_mod_cont.png", f"lanl_run2_{time_h}h_mod_cont.png",
                 f"melbourne_run2_{time_h}h_mod_cont.png", f"stanford_run2_{time_h}h_mod_cont.png", f"stuttgart_run2_{time_h}h_mod_cont.png",
                 f"zm1_run2_{time_h}h_mod_cont.png", f"zm2_run2_{time_h}h_mod_cont.png", f"zm3,1_run2_{time_h}h_mod_cont.png", 
                 f"zm3,3_run2_{time_h}h_mod_cont.png", "temp.png"])
-print(f"Generated compare_segmentation_{time_h}h_mit.png.")
+print(f"Generated compare_segmentation_{time_h}h_mit_revised.png.")

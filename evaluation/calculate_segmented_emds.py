@@ -61,14 +61,14 @@ baseFileNames = ['../../austin/spatial_maps/spatial_map_',
                  '../../melbourne/spatial_map_',
                  '../../stanford/spatial_maps/spatial_map_',
                  '../../stuttgart/spatial_map_',
-                 '../../mit/results/m1/spatial_map_',
-                 '../../mit/results/m2/spatial_map_',
-                 '../../mit/results/m3_D1/spatial_map_',
-                 '../../mit/results/m3_D3/spatial_map_']
+                 '../../mit/results/revised/m1/spatial_map_',
+                 '../../mit/results/revised/m2/spatial_map_',
+                 '../../mit/results/revised/m3_D1/spatial_map_',
+                 '../../mit/results/revised/m3_D3/spatial_map_']
 
 timesteps = [24, 48, 72, 96, 120]
 numGroups = len(baseFileNames)
-numExps = 5
+numExps = 5                                     # number of experiments
 numGroupsPlusExps = numGroups + numExps
 distances = np.zeros(((numGroups + numExps)*len(timesteps), (numGroups + numExps)*len(timesteps)))
 
@@ -153,4 +153,4 @@ for hourI in timesteps:
 
 distances = distances + distances.T - np.diag(distances.diagonal())
 
-np.savetxt("segmented_distances_mit.csv", distances, delimiter=",")
+np.savetxt("segmented_distances_mit_revised.csv", distances, delimiter=",")

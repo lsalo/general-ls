@@ -61,10 +61,10 @@ baseFileNames = ['../../austin/spatial_maps/spatial_map_',
                  '../../melbourne/spatial_map_',
                  '../../stanford/spatial_maps/spatial_map_',
                  '../../stuttgart/spatial_map_',
-                 '../../mit/results/revised/m1/spatial_map_',
-                 '../../mit/results/revised/m2/spatial_map_',
-                 '../../mit/results/revised/m3_D1/spatial_map_',
-                 '../../mit/results/revised/m3_D3/spatial_map_']
+                 '../../mit/results/revised/initial_params/m1/spatial_map_',
+                 '../../mit/results/revised/initial_params/m2/spatial_map_',
+                 '../../mit/results/revised/initial_params/m3_D1/spatial_map_',
+                 '../../mit/results/revised/initial_params/m3_D3/spatial_map_']
 
 timesteps = [24, 48, 72, 96, 120]
 numGroups = len(baseFileNames)
@@ -153,4 +153,5 @@ for hourI in timesteps:
 
 distances = distances + distances.T - np.diag(distances.diagonal())
 
-np.savetxt("segmented_distances_mit_revised.csv", distances, delimiter=",")
+#np.savetxt("segmented_distances_mit_revised.csv", distances, delimiter=",")
+np.savetxt("segmented_distances_mit_revised_initialparams.csv", distances, delimiter=",")

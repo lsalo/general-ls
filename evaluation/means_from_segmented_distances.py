@@ -28,7 +28,8 @@ numGroups = len(groups)
 numExps = 5
 numGroupsPlusExps = numGroups + numExps
 
-distances = np.loadtxt("segmented_distances_mit_revised.csv", delimiter=",")
+#distances = np.loadtxt("segmented_distances_mit_revised.csv", delimiter=",")
+distances = np.loadtxt("segmented_distances_mit_revised_initialparams.csv", delimiter=",")
 
 fig, axs = plt.subplots(2, 3, figsize=(9, 6))
 
@@ -123,7 +124,7 @@ axs[1][0].set_ylabel(r'\textrm{dist. to forecasts [gr.cm]}')
 
 fig.legend(loc='lower right', bbox_to_anchor=(1.0, 0.05), ncol=2)
 
-fig.savefig(f"means_segmented_snapshots_noMITfore_revised.pdf", bbox_inches='tight')
+fig.savefig(f"means_segmented_snapshots_noMITfore_revised_initialparams.pdf", bbox_inches='tight')
 
 for k, hour, ki, kj in zip(range(0, 5), [24, 48, 72, 96, 120], [0, 0, 0, 1, 1], [0, 1, 2, 0, 1]):
     axs[ki][kj].set_xlim((0, 120))
@@ -131,4 +132,4 @@ for k, hour, ki, kj in zip(range(0, 5), [24, 48, 72, 96, 120], [0, 0, 0, 1, 1], 
     axs[ki][kj].set_ylim((70, 180))
     axs[ki][kj].grid(color=(0.9, 0.9, 0.9), linestyle='-', linewidth=0.5, zorder=0)
 
-fig.savefig(f"means_segmented_snapshots_zoom_noMITfore_revised.pdf", bbox_inches='tight')
+fig.savefig(f"means_segmented_snapshots_zoom_noMITfore_revised_initialparams.pdf", bbox_inches='tight')
